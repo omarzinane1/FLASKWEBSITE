@@ -1,0 +1,40 @@
+{% extends "base.html" %} {% block title %}SIGN-UP{% endblock %} {% block
+content %}
+
+<div class="continer-signUp">
+  <h1>Sign Up</h1>
+  <form action="/signup" method="POST">
+    <div class="form-login">
+      <div class="form-group">
+        <label for="firstname">First Name</label>
+        <input
+          type="text"
+          id="firstname"
+          name="firstname"
+          placeholder="Enter first name"
+        />
+      </div>
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="Enter email address"
+        />
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Enter password"
+        />
+      </div>
+      <button type="submit" id="signup">Sign Up</button>
+    </div>
+  </form>
+</div>
+
+{% endblock %}

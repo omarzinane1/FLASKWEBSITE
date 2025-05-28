@@ -3,20 +3,24 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
-    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename='css/style.css')}}"
+    />
+    <title>{% block title %}{% endblock %}</title>
   </head>
   <body>
     <nav class="navbar">
-        <button data-toggle="collapse" type="button">
-            <span class="navbar-icon">APP</span>
-        </button>
-        <div class="navbar-nav">
-            <a class="navbar-item" id="login" href="http://">login</a>
-            <a class="navbar-item" id="sign-up" href="http://">sign up</a>
-            <a class="navbar-item" id="logout" href="http://">logout</a>
-        </div>
+      <button class="btn-logo" data-toggle="collapse" type="button">
+        <span class="navbar-icon">APP</span>
+      </button>
+      <div class="navbar-nav">
+        <a class="navbar-item" id="login" href="/login">login</a>
+        <a class="navbar-item" id="sign-up" href="/sign-up">sign up</a>
+        <a class="navbar-item" id="logout" href="/logout">logout</a>
+      </div>
     </nav>
+    <div class="content">{% block content %} {% endblock %}</div>
   </body>
   <script src="{{url_for('static', filename='js/index.js')}}"></script>
 </html>
