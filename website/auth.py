@@ -24,11 +24,13 @@ def login():
         else:
             flash('Email does not exist', category='error')
 
-    return render_template('login.html')
+    return render_template('login.html', user = current_user)
 
 @auth.route('/logout')
+@login_required
 def logout():
-    return render_template('logout.html')
+    logout_user()
+    return redirect(url_for('auth.login'))
 
 @auth.route('/sign-up', methods=['GET', 'POST'])
 def sign_up():
@@ -49,15 +51,16 @@ def sign_up():
         elif password != password2:
             flash('Les mots de passe ne correspondent pas.', category='error')
         else:
-            # Ajouter l'utilisateur ici
+            # Ajouter l'utilisateur
             new_user = User(email = email, name = name, password = generate_password_hash(password, method='pbkdf2:sha256')
 )
             db.session.add(new_user)
             db.session.commit()
+            login_user(user, remember=True)
             flash('Inscription réussie !', category='success')
             return redirect(url_for('views.home'))
 
-    return render_template('sign_up.html')  # ou le nom de ton template
+    return render_template('sign_up.html', user=current_user)  # ou le nom de ton template
 
     
 

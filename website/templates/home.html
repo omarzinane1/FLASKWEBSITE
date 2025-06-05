@@ -1,3 +1,41 @@
-{%extends "base.html"%} {% block title %} Changed {% endblock %}  {% block content %}
+{%extends "base.html"%} {% block title %} Changed {% endblock %} {% block
+content %}
 <h1>THIS PAGE FOR HOME CONTENT</h1>
+<div class="container mt-4">
+  <h3 class="mb-3">Mes notes</h3>
+  <ul class="list-group">
+    {% for note in user.notes %}
+    <li
+      class="list-group-item d-flex justify-content-between align-items-start"
+    >
+      <div class="ms-2 me-auto">
+        <div class="fw-bold">{{ note.date.strftime('%d/%m/%Y %H:%M') }}</div>
+        {{ note.data }}
+      </div>
+      <form
+      >
+        <button type="submit" class="btn btn-sm btn-danger">Supprimer</button>
+      </form>
+    </li>
+    {% else %}
+    <li class="list-group-item">Aucune note pour l’instant.</li>
+    {% endfor %}
+  </ul>
+</div>
+
+<form method="POST">
+  <div class="mb-3">
+    <label for="note" class="form-label">Votre note</label>
+    <textarea
+      class="form-control"
+      id="note"
+      name="note"
+      rows="4"
+      placeholder="Écris ta note ici..."
+      required
+    ></textarea>
+  </div>
+  <button type="submit" class="btn btn-success">Ajouter la note</button>
+</form>
+
 {% endblock %}
