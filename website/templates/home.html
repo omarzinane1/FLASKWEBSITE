@@ -13,8 +13,12 @@ content %}
         {{ note.data }}
       </div>
       <form
+        method="POST"
+         action="{{ url_for('views.delete_note', note_id=note.id) }}"
       >
-        <button type="submit" class="btn btn-sm btn-danger">Supprimer</button>
+        <button type="submit" class="btn btn-sm btn-danger">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </form>
     </li>
     {% else %}
